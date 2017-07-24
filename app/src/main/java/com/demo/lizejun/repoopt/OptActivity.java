@@ -20,13 +20,12 @@ public class OptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acitivity_span);
-        useSpan();
+        setContentView(R.layout.activity_clip);
     }
 
     private void useSpan() {
         TextView textView = (TextView) findViewById(R.id.tv_span);
-        SpannableStringBuilder ssb = new SpannableStringBuilder("300 yuan");
+        SpannableStringBuilder ssb = new SpannableStringBuilder("300 RMB");
         //设置文字大小。
         ssb.setSpan(new RelativeSizeSpan(6.0f), 0, 3, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         //设置文字颜色。
