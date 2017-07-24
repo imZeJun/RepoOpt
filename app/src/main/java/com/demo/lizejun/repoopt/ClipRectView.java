@@ -10,7 +10,7 @@ import android.view.View;
 
 public class ClipRectView extends View {
 
-    private static final int[] ID = new int[]{R.drawable.udn, R.drawable.usatoday, R.drawable.weibo, R.drawable.xinhua, R.drawable.yahoo, R.drawable.zhe800};
+    private static final int[] ID = new int[]{R.drawable.pic_1, R.drawable.pic_2, R.drawable.pic_3};
     private Bitmap[] mBitmaps;
 
     public ClipRectView(Context context) {
@@ -39,9 +39,22 @@ public class ClipRectView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (Bitmap bitmap : mBitmaps) {
+        canvas.save();
+        int bits = mBitmaps.length;
+        for (int i = 0; i < bits; i++) {
+            Bitmap bitmap = mBitmaps[i];
+            int bitW = bitmap.getWidth();
+            int bitH = bitmap.getHeight();
+            if (i != 0) {
+                canvas.translate(bitW / 2, 0);
+            }
+            canvas.save();
+            if (i != bits - 1) {
+                canvas.clipRect(0, 0, bitW / 2, bitH);
+            }
             canvas.drawBitmap(bitmap, 0, 0, null);
-            canvas.translate(bitmap.getWidth() / 2, 0);
+            canvas.restore();
         }
+        canvas.restore();
     }
 }
