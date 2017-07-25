@@ -1,5 +1,6 @@
 package com.demo.lizejun.repoopt;
 
+import android.content.res.Configuration;
 import android.support.v4.view.AsyncLayoutInflater;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.TextView;
 
 import static android.R.attr.factor;
@@ -23,8 +25,37 @@ public class OptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_async);
-        asyncInflated();
+        setContentView(R.layout.activity_opt);
+        optUtils();
+    }
+
+    private void optUtils() {
+        Button assemble = (Button) findViewById(R.id.bt_assemble);
+        assemble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptUtils.badAssemble();
+            }
+        });
+        Button string = (Button) findViewById(R.id.bt_string);
+        string.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptUtils.badString();
+            }
+        });
+        Button app = (Button) findViewById(R.id.bt_app);
+        app.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptUtils.startApp(OptActivity.this);
+            }
+        });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     private void useSpan() {
