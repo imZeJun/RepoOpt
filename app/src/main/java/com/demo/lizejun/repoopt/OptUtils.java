@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.util.Log;
 
 import java.util.List;
 
@@ -45,6 +46,20 @@ public class OptUtils {
             context.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, RemoteActivity.class);
+        context.startActivity(intent);
+    }
+
+
+    private static final boolean DEBUG = true;
+
+    public static void LogD(String tag, String msg) {
+        if (DEBUG) {
+            Log.d(tag, msg);
         }
     }
 }

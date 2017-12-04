@@ -14,9 +14,6 @@ import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static android.R.attr.factor;
-import static android.R.attr.start;
-
 public class OptActivity extends AppCompatActivity {
 
     private ViewStub mViewStub;
@@ -25,8 +22,8 @@ public class OptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opt);
-        optUtils();
+        setContentView(R.layout.layout_width_demo);
+        ThreadDemo demo = new ThreadDemo();
     }
 
     private void optUtils() {
@@ -49,6 +46,13 @@ public class OptActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OptUtils.startApp(OptActivity.this);
+            }
+        });
+        Button service = (Button) findViewById(R.id.bt_service);
+        service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptUtils.startActivity(OptActivity.this);
             }
         });
     }
