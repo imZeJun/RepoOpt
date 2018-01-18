@@ -38,8 +38,7 @@ public class OptUtils {
     public static void startApp(Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.qq.com"));
         intent.setComponent(new ComponentName("com.android.browser", "com.android.browser.BrowserActivity"));
-        List<ResolveInfo> resolveInfo = context.getPackageManager().queryIntentActivities(intent, 0);
-        if (resolveInfo == null || resolveInfo.size() == 0) {
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
             return;
         }
         try {
@@ -61,5 +60,13 @@ public class OptUtils {
         if (DEBUG) {
             Log.d(tag, msg);
         }
+    }
+
+    public static void accept(@Constant.VideoState int videoState) {
+        Log.d("OptUtils", "state=" + videoState);
+    }
+
+    public static void testAccept() {
+        accept(Constant.FLAG_START);
     }
 }

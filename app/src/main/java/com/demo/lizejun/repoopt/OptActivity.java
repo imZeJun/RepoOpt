@@ -31,7 +31,7 @@ public class OptActivity extends AppCompatActivity {
         assemble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OptUtils.badAssemble();
+                ThreadLocalSamples.startSample();
             }
         });
         Button string = (Button) findViewById(R.id.bt_string);
