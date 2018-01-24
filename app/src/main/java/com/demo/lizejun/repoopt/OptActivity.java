@@ -22,8 +22,8 @@ public class OptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_width_demo);
-        ThreadDemo demo = new ThreadDemo();
+        setContentView(R.layout.activity_opt);
+        optUtils();
     }
 
     private void optUtils() {
@@ -31,7 +31,13 @@ public class OptActivity extends AppCompatActivity {
         assemble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ThreadLocalSamples.startSample();
+                //ThreadLocalSamples.startSample();
+                //LruCacheSamples.startRun();
+                //SparseArraySample.startRun();
+                //CopySample.startRun1();
+                //CopySample.startRun3();
+                //CopySample.methodRef();
+                CopySample.methodSwapRef();
             }
         });
         Button string = (Button) findViewById(R.id.bt_string);
