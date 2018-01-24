@@ -37,7 +37,9 @@ public class OptActivity extends AppCompatActivity {
                 //CopySample.startRun1();
                 //CopySample.startRun3();
                 //CopySample.methodRef();
-                CopySample.methodSwapRef();
+                //CopySample.methodSwapRef();
+                //CopySample.listShallowRun();
+                CopySample.listDeepRun();
             }
         });
         Button string = (Button) findViewById(R.id.bt_string);

@@ -2,6 +2,8 @@ package com.demo.lizejun.repoopt;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class CopySample {
 
     public static void startRun1() {
@@ -76,6 +78,28 @@ public class CopySample {
         int num;
     }
 
+    public static void listShallowRun() {
+        ArrayList<People> lPeoples = new ArrayList<>();
+        People people1 = new People();
+        lPeoples.add(people1);
+        Log.d("CopySample", "listShallowRun, lPeoples[0]=" + lPeoples.get(0));
+        ArrayList<People> rPeoples = (ArrayList<People>) lPeoples.clone();
+        Log.d("CopySample", "listShallowRun, rPeoples[0]=" + rPeoples.get(0));
+    }
+
+    public static void listDeepRun() {
+        ArrayList<People> lPeoples = new ArrayList<>();
+        People people1 = new People();
+        people1.holder = new People.Holder();
+        lPeoples.add(people1);
+        Log.d("CopySample", "listShallowRun, lPeoples[0]=" + lPeoples.get(0));
+        ArrayList<People> rPeoples = new ArrayList<>();
+        for (People people : lPeoples) {
+            rPeoples.add((People) people.clone());
+        }
+        Log.d("CopySample", "listShallowRun, rPeoples[0]=" + rPeoples.get(0));
+    }
+    
     public static class People implements Cloneable {
 
         int age;
@@ -84,15 +108,28 @@ public class CopySample {
         @Override
         protected Object clone() {
             try {
-                return super.clone();
+                People people = (People) super.clone();
+                people.holder = (People.Holder) this.holder.clone();
+                return people;
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
-        public static class Holder {
+        public static class Holder implements Cloneable {
+
             int holderValue;
+
+            @Override
+            protected Object clone() {
+                try {
+                    return super.clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
         }
     }
 }
